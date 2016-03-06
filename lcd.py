@@ -73,6 +73,15 @@ def lcd_init():
   lcd_byte(0x06,LCD_CMD)
   lcd_byte(0x01,LCD_CMD)  
 
+def lcd_clear():
+	lcd_byte(0x01,LCD_CMD)
+def lcd_curser(style): # 0 off, 1 on Underline, 2 On block
+	if style == 1:
+		lcd_byte(0x0E,LCD_CMD) # 
+	if style == 0:
+		lcd_byte(0x0C,LCD_CMD) # OFF
+	if style == 2:
+		lcd_byte(0x0F,LCD_CMD) #
 def lcd_string(message,style):
   # Send string to display
   # style=1 Left justified
