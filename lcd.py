@@ -54,45 +54,7 @@ E_PULSE = 0.00005
 E_DELAY = 0.00005
 
 def main():
-  # Main program block
-
-  # Initialise display
-  lcd_init()
-
-  # Toggle backlight on-off-on
-  GPIO.output(LED_ON, True)
-  time.sleep(1)
-  GPIO.output(LED_ON, False)
-  time.sleep(1)
-  GPIO.output(LED_ON, True)
-  time.sleep(1)
-
-  # Send some centred test
-  lcd_byte(LCD_LINE_1, LCD_CMD)
-  lcd_string("Rasbperry Pi",2)
-  lcd_byte(LCD_LINE_2, LCD_CMD)
-  lcd_string("Model B",2)
-
-  time.sleep(3) # 3 second delay
- 
-  # Send some left justified text
-  lcd_byte(LCD_LINE_1, LCD_CMD)
-  lcd_string("1234567890123456",1)
-  lcd_byte(LCD_LINE_2, LCD_CMD)
-  lcd_string("abcdefghijklmnop",1)
-
-  time.sleep(3) # 3 second delay
-
-  # Send some right justified text
-  lcd_byte(LCD_LINE_1, LCD_CMD)
-  lcd_string("Raspberrypi-spy",3)
-  lcd_byte(LCD_LINE_2, LCD_CMD)
-  lcd_string(".co.uk",3)
-
-  time.sleep(30)
-
-  # Turn off backlight
-  GPIO.output(LED_ON, False)
+	print("Dose this look like a program to you?")
 
 def lcd_init():
   GPIO.setmode(GPIO.BCM)       # Use BCM GPIO numbers
