@@ -75,6 +75,7 @@ def lcd_init():
 
 def lcd_clear():
 	lcd_byte(0x01,LCD_CMD)
+
 def lcd_curser(style): # 0 off, 1 on Underline, 2 On block
 	if style == 1:
 		lcd_byte(0x0E,LCD_CMD) # 
@@ -82,6 +83,12 @@ def lcd_curser(style): # 0 off, 1 on Underline, 2 On block
 		lcd_byte(0x0C,LCD_CMD) # OFF
 	if style == 2:
 		lcd_byte(0x0F,LCD_CMD) #
+def lcd_backlight(curr):
+	if curr == True:
+		GPIO.output(LED_ON, True)
+	if curr == False:
+		GPIO.output(LED_ON, False)
+
 def lcd_string(message,style):
   # Send string to display
   # style=1 Left justified
