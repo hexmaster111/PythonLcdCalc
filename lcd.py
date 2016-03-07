@@ -139,22 +139,22 @@ def lcd_byte(bits, mode):
   # mode = True  for character
   #        False for command
 
-  	GPIO.output(LCD_RS, mode) # RS
+  GPIO.output(LCD_RS, mode) # RS
 
   # High bits
-  	GPIO.output(LCD_D4, False)
-  	GPIO.output(LCD_D5, False)
-  	GPIO.output(LCD_D6, False)
-  	GPIO.output(LCD_D7, False)
-  	if bits&0x10==0x10:
-    		GPIO.output(LCD_D4, True)
-  	if bits&0x20==0x20:
-    		GPIO.output(LCD_D5, True)
-  	if bits&0x40==0x40:
-    		GPIO.output(LCD_D6, True)
-  	if bits&0x80==0x80:
-  		GPIO.output(LCD_D7, True)
-  		time.sleep(E_DELAY)
+  GPIO.output(LCD_D4, False)
+  GPIO.output(LCD_D5, False)
+  GPIO.output(LCD_D6, False)
+  GPIO.output(LCD_D7, False)
+  if bits&0x10==0x10:
+	GPIO.output(LCD_D4, True)
+  if bits&0x20==0x20:
+	GPIO.output(LCD_D5, True)
+  if bits&0x40==0x40:
+	GPIO.output(LCD_D6, True)
+  if bits&0x80==0x80:
+	GPIO.output(LCD_D7, True)
+ 	time.sleep(E_DELAY)
   # Toggle 'Enable' pin
   time.sleep(E_DELAY)    
   GPIO.output(LCD_E, True)  
@@ -167,14 +167,14 @@ def lcd_byte(bits, mode):
   GPIO.output(LCD_D5, False)
   GPIO.output(LCD_D6, False)
   GPIO.output(LCD_D7, False)
-  	if bits&0x01==0x01:
-  		GPIO.output(LCD_D4, True)
-  	if bits&0x02==0x02:
-    		GPIO.output(LCD_D5, True)
-  	if bits&0x04==0x04:
-    		GPIO.output(LCD_D6, True)
-  	if bits&0x08==0x08:
-    		GPIO.output(LCD_D7, True)
+  if bits&0x01==0x01:
+  	GPIO.output(LCD_D4, True)
+  if bits&0x02==0x02:
+	GPIO.output(LCD_D5, True)
+  if bits&0x04==0x04:
+	GPIO.output(LCD_D6, True)
+  if bits&0x08==0x08:
+	GPIO.output(LCD_D7, True)
 
   # Toggle 'Enable' pin
   time.sleep(E_DELAY)    
@@ -184,4 +184,4 @@ def lcd_byte(bits, mode):
   time.sleep(E_DELAY)   
 
 if __name__ == '__main__':
-  main()
+	main()
