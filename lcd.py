@@ -1,12 +1,6 @@
 #!/usr/bin/python
+#Auther: Trevor Gruszynski based off of matt hawkens script
 #
-# HD44780 LCD Test Script for
-# Raspberry Pi
-#
-# Author : Matt Hawkins
-# Site   : http://www.raspberrypi-spy.co.uk
-# 
-# Date   : 03/08/2012
 #
 
 # The wiring for the LCD is as follows:
@@ -39,6 +33,10 @@ LCD_D5 = 6
 LCD_D6 = 5
 LCD_D7 = 11
 LED_ON = 15
+# Define LED MAPINGS
+TBL_LED = 21
+Y_LED = 20
+CALC_LED = 16
 
 # Define some device constants
 LCD_WIDTH = 16    # Maximum characters per line
@@ -56,6 +54,10 @@ E_DELAY = 0.00005
 def main():
 	print("Dose this look like a program to you?")
 
+def led_init():
+	GPIO.setup(TBL_LED, GPIO.OUT)
+	GPIO.setup(Y_LED, GPIO.OUT)
+	GPIO.setup(CALC_LED, GPIO.OUT)
 def lcd_init():
   GPIO.setmode(GPIO.BCM)       # Use BCM GPIO numbers
   GPIO.setup(LCD_E, GPIO.OUT)  # E
@@ -65,7 +67,8 @@ def lcd_init():
   GPIO.setup(LCD_D6, GPIO.OUT) # DB6
   GPIO.setup(LCD_D7, GPIO.OUT) # DB7
   GPIO.setup(LED_ON, GPIO.OUT) # Backlight enable  
- # Initialise display
+  lcd_curser(3)
+# Initialise display
   lcd_byte(0x33,LCD_CMD)
   lcd_byte(0x32,LCD_CMD)
   lcd_byte(0x28,LCD_CMD)
@@ -75,7 +78,9 @@ def lcd_init():
 
 def lcd_clear():
 	lcd_byte(0x01,LCD_CMD)
-
+	lcd_byte(LCD_LINE_1,LCD_CMD)
+	lcd_string("TBL Y= CALC OPTS", 1)
+	lcd_byte(LCD_LINE_2,LCD_CMD)
 def lcd_curser(style): # 0 off, 1 on Underline, 2 On block
 	if style == 1:
 		lcd_byte(0x0E,LCD_CMD) # 
@@ -88,7 +93,27 @@ def lcd_backlight(curr):
 		GPIO.output(LED_ON, True)
 	if curr == False:
 		GPIO.output(LED_ON, False)
-
+def led_mode(mode):
+	if mode == 0:# in TBL
+		GPIO.output(TBL_LED, True)
+		GPIO.output(Y_LED, False)
+		GPIO.output(CALC_LED, False)
+	if mode == 1:#In Y=
+		GPIO.output(TBL_LED, False)
+		GPIO.output(Y_LED, True)
+		GPIO.output(CALC_LED, False)
+	if mode == 2:#In calc 		
+		GPIO.output(TBL_LED, False)
+		GPIO.output(Y_LED, False)
+		GPIO.output(CALC_LED, True)
+	if mode == 3:#In Opts
+		GPIO.output(TBL_LED, False)
+		GPIO.output(Y_LED, False)
+		GPIO.output(CALC_LED, False)
+	#else:#Error To be expaned
+	#	GPIO.output(TBL_LED, True)
+	#	GPIO.output(Y_LED, True)
+	#	GPIO.output(CALC_LED, True)
 def lcd_string(message,style):
   # Send string to display
   # style=1 Left justified
