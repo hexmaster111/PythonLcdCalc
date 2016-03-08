@@ -53,7 +53,6 @@ E_DELAY = 0.00005
 
 def main():
 	print("Dose this look like a program to you?")
-
 def led_init():
 	GPIO.setup(TBL_LED, GPIO.OUT)
 	GPIO.setup(Y_LED, GPIO.OUT)
@@ -67,7 +66,6 @@ def lcd_init():
   GPIO.setup(LCD_D6, GPIO.OUT) # DB6
   GPIO.setup(LCD_D7, GPIO.OUT) # DB7
   GPIO.setup(LED_ON, GPIO.OUT) # Backlight enable  
-  lcd_curser(3)
 # Initialise display
   lcd_byte(0x33,LCD_CMD)
   lcd_byte(0x32,LCD_CMD)
@@ -81,7 +79,7 @@ def lcd_clear():
 	lcd_byte(LCD_LINE_1,LCD_CMD)
 	lcd_string("TBL Y= CALC OPTS", 1)
 	lcd_byte(LCD_LINE_2,LCD_CMD)
-
+	lcd_curser()
 def lcd_curser(style): # 0 off, 1 on Underline, 2 On block
 	if style == 1:
 		lcd_byte(0x0E,LCD_CMD) # 
@@ -113,10 +111,6 @@ def led_mode(mode):
 		GPIO.output(TBL_LED, False)
 		GPIO.output(Y_LED, False)
 		GPIO.output(CALC_LED, False)
-	#else:#Error To be expaned
-	#	GPIO.output(TBL_LED, True)
-	#	GPIO.output(Y_LED, True)
-	#	GPIO.output(CALC_LED, True)
 def lcd_string(message,style):
   # Send string to display
   # style=1 Left justified
