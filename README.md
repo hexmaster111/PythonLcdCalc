@@ -3,8 +3,8 @@
 
 
 #TODO
-- Fix the current line wraping bug
-- Make a function that will keep the Top "Calcbar" there through a clear
+- ~~Fix the current line wraping bug~~
+- ~~Make a function that will keep the Top "Calcbar" there through a clear~~
 - Make the "Led stuff" its one function
 - **Stuff**
 
@@ -86,3 +86,7 @@ Used to send Display spsfick information or costome charactos. (More info coming
  - mode is True for false
    - True will send the data in character mode
    - False will send the data in command mode
+
+##lcd_linecheck
+Takes nothing in, it check if you are on the correct line count.
+If you are not, it corrects for that
