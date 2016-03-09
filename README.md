@@ -7,6 +7,7 @@
 - Make a function that will keep the Top "Calcbar" there through a clear
 - Make the "Led stuff" its one function
 - **Stuff**
+
 ##About
 The LCD.py script was devluped for use with the calc.py script to produce a Calculator that was able to use a Python CAS system.
 
