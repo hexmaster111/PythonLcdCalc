@@ -33,11 +33,14 @@ LCD_D5 = 6
 LCD_D6 = 5
 LCD_D7 = 11
 LED_ON = 15
+LINE = 0
 # Define LED MAPINGS
 TBL_LED = 21
 Y_LED = 20
 CALC_LED = 16
 
+#Starting line
+SLINE = 1
 # Define some device constants
 LCD_WIDTH = 16    # Maximum characters per line
 LCD_CHR = True
@@ -79,7 +82,7 @@ def lcd_clear():
 	lcd_byte(LCD_LINE_1,LCD_CMD)
 	lcd_string("TBL Y= CALC OPTS", 1)
 	lcd_byte(LCD_LINE_2,LCD_CMD)
-	lcd_curser(3)
+	lcd_curser(2)
 def lcd_curser(style): # 0 off, 1 on Underline, 2 On block
 	if style == 1:
 		lcd_byte(0x0E,LCD_CMD) # 
@@ -112,6 +115,9 @@ def led_mode(mode):
 		GPIO.output(Y_LED, False)
 		GPIO.output(CALC_LED, False)
 def lcd_string(message,style):
+  	global SLINE 
+	SLINE += 1
+	print('Should be on:', SLINE)
   # Send string to display
   # style=1 Left justified
   # style=2 Centred
@@ -126,6 +132,20 @@ def lcd_string(message,style):
 
   	for i in range(LCD_WIDTH):
     		lcd_byte(ord(message[i]),LCD_CHR)
+	lcd_linecheck()
+
+def lcd_linecheck():
+	##CHeck if the Line is on the correct line for the Print number
+	if SLINE==1:
+		lcd_byte(LCD_LINE_1, False)
+	if SLINE==2:
+		lcd_byte(LCD_LINE_2, False)
+	if SLINE==3:
+		lcd_byte(LCD_LINE_3, False)
+	if SLINE==4:
+		lcd_byte(LCD_LINE_4, False)
+		global SLINE
+		SLINE = 1
 
 def lcd_byte(bits, mode):
   # Send byte to data pins

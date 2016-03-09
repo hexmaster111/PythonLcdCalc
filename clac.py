@@ -2,7 +2,7 @@
 #Auther: Trevor Gruszynski
 #For use in cunjunction with the lcd.py script
 
-import time, math, os, sys
+import time, math,cmath ,os, sys
 from sympy import *
 def main():
 		
