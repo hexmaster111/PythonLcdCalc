@@ -5,8 +5,10 @@
 #TODO
 - ~~Fix the current line wraping bug~~
 - ~~Make a function that will keep the Top "Calcbar" there through a clear~~
-- Make the "Led stuff" its one function
-- **Stuff**
+- ~~Make the "Led stuff" its one function~~
+- Make the data too the lcd have a buffer
+ - Add scrole back to the buffer
+- Input system for the matrix of buttens
 
 ##About
 The LCD.py script was devluped for use with the calc.py script to produce a Calculator that was able to use a Python CAS system.

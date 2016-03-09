@@ -5,4 +5,4 @@
 import time, math,cmath ,os, sys
 from sympy import *
 def main():
-		
+			

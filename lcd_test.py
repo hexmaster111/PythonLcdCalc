@@ -1,6 +1,7 @@
 import sys
 sys.path.append('/home/pi/Projects/PythonLcdCalc')
 import lcd
+import led
 import time
 import RPi.GPIO as GPIO
 DELAY = 0.00005

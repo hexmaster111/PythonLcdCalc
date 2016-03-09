@@ -34,10 +34,6 @@ LCD_D6 = 5
 LCD_D7 = 11
 LED_ON = 15
 LINE = 0
-# Define LED MAPINGS
-TBL_LED = 21
-Y_LED = 20
-CALC_LED = 16
 
 #Starting line
 SLINE = 1
@@ -46,20 +42,19 @@ LCD_WIDTH = 16    # Maximum characters per line
 LCD_CHR = True
 LCD_CMD = False #Was False
 
+#LCD line jump commands
 LCD_LINE_1 = 0x80 # 0x80 # LCD RAM address for the 1st line
 LCD_LINE_2 = 0xC0 # 0xC0 # LCD RAM address for the 2nd line 
 LCD_LINE_3 = 0x90 # 0x94 # LCD RAM ADDRESS FOR THE 3RD LINE
 LCD_LINE_4 = 0xD0 # 0xD4 # YOU already know man...
+
 # Timing constants
 E_PULSE = 0.00005
 E_DELAY = 0.00005
 
 def main():
 	print("Dose this look like a program to you?")
-def led_init():
-	GPIO.setup(TBL_LED, GPIO.OUT)
-	GPIO.setup(Y_LED, GPIO.OUT)
-	GPIO.setup(CALC_LED, GPIO.OUT)
+
 def lcd_init():
   GPIO.setmode(GPIO.BCM)       # Use BCM GPIO numbers
   GPIO.setup(LCD_E, GPIO.OUT)  # E
@@ -83,6 +78,7 @@ def lcd_clear():
 	lcd_string("TBL Y= CALC OPTS", 1)
 	lcd_byte(LCD_LINE_2,LCD_CMD)
 	lcd_curser(2)
+
 def lcd_curser(style): # 0 off, 1 on Underline, 2 On block
 	if style == 1:
 		lcd_byte(0x0E,LCD_CMD) # 
@@ -97,23 +93,6 @@ def lcd_backlight(curr):
 	if curr == False:
 		GPIO.output(LED_ON, False)
 
-def led_mode(mode):
-	if mode == 0:# in TBL
-		GPIO.output(TBL_LED, True)
-		GPIO.output(Y_LED, False)
-		GPIO.output(CALC_LED, False)
-	if mode == 1:#In Y=
-		GPIO.output(TBL_LED, False)
-		GPIO.output(Y_LED, True)
-		GPIO.output(CALC_LED, False)
-	if mode == 2:#In calc 		
-		GPIO.output(TBL_LED, False)
-		GPIO.output(Y_LED, False)
-		GPIO.output(CALC_LED, True)
-	if mode == 3:#In Opts
-		GPIO.output(TBL_LED, False)
-		GPIO.output(Y_LED, False)
-		GPIO.output(CALC_LED, False)
 def lcd_string(message,style):
   	global SLINE 
 	SLINE += 1
