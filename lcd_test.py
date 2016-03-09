@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/pi/Projects/lcd')
+sys.path.append('/home/pi/Projects/PythonLcdCalc')
 import lcd
 import time
 import RPi.GPIO as GPIO
