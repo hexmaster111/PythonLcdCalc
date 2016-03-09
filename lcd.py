@@ -79,7 +79,7 @@ def lcd_clear():
 	lcd_byte(LCD_LINE_1,LCD_CMD)
 	lcd_string("TBL Y= CALC OPTS", 1)
 	lcd_byte(LCD_LINE_2,LCD_CMD)
-	lcd_curser()
+	lcd_curser(3)
 def lcd_curser(style): # 0 off, 1 on Underline, 2 On block
 	if style == 1:
 		lcd_byte(0x0E,LCD_CMD) # 
