@@ -1,5 +1,5 @@
 #LCD.py Documentation
-[TOC]
+
 
 
 #TODO
